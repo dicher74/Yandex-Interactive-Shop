@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Interactive store banner</title>
+
+		<meta charset="UTF-8">
+		<meta name="author" content="Dmitry Chertolyas">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Yandex Store">
+
+		<link rel="stylesheet" href="styles/master.css">
+		<link rel="stylesheet" href="styles/small-screen-width.css">
+		<link rel="stylesheet" href="styles/medium-screen-width.css">
+		<link rel="stylesheet" href="styles/big-screen-width.css">
+
+		<script src="scripts/config.js"></script>
+		<script src="scripts/mount-classes.js"></script>
+		<script src="scripts/mount.js"></script>
+		<script src="scripts/drag-mechanics.js"></script>
+	</head>
+	<body>
+		<div class="store-banner">
+			<svg version="1.1" class="store-banner__image" viewBox="0 0 300 600"
+				preserveAspectRatio="xMidYMid meet" 
+				overflow="hidden" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<image class="store store_empty" href="assets/store-background.svg" />
+				<g class="store__products"></g>
+				<g class="store-basket__inner-space"></g>
+				<image class="store__store-basket" href="assets/store-basket.svg" />
+				<a href="https://lavka.yandex.ru/">
+					<g class="pay-button pay-button_inactive">
+						<image class="pay-button__rect" href="assets/pay-button.svg" />
+						<text class="pay-button__text" dy="0.3em"> Оплатить корзину </text>
+					</g>
+				</a>
+			</svg>
+		</div>
+	</body>
+</html>
