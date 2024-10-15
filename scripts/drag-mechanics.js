@@ -43,25 +43,27 @@ class DraggingGood extends GoodMountObject {
 	}
 	moveAt(x, y) {
 		const newCursorCoordinates = convertDOMtoSVG(x, y)
-		if (!newCursorCoordinates) { return; }
+		if (!newCursorCoordinates) { this.endDrag(); }
+		if (!this.inAllowedArea) { this.endDrag(); }
 		
 		autoscroll(x, y)
 		this.center = newCursorCoordinates
-		if (!this.inAllowedArea) { this.endDrag() }
 		this.mount()
 	}	
 	startDrag(event) {
-		if (event.cancelable) { event.preventDefault() }
-		let coordinates = event
-		if (event.touches) { coordinates = event.touches[0]	}
+		if (event.cancelable) { event.preventDefault(); }
 
+		let coordinates = event
+		if (event.touches) { coordinates = event.touches[0];	}
 		const x = coordinates.clientX
 		const y = coordinates.clientY
+
 		this.dragMode = true
 		this.moveAt(x, y)
 	}
 	drag(event) {
-		if (!this.dragMode) { return }
+		if (!this.dragMode) { this.endDrag(); }
+
 		const x = event.clientX
 		const y = event.clientY
 		this.moveAt(x, y)
@@ -78,7 +80,7 @@ class DraggingGood extends GoodMountObject {
 			this.dropToBasket() 
 		}
 		this.dragMode = false
-		this.DOMLink.remove()
+		this.removeAssociatedDOM()
 	}
 	backToStore() {
 		const newStoreGood = new GoodMountObject(this.goodType)
@@ -114,7 +116,7 @@ let endDragFunction
 let dragGood
 
 function initializeDragObject(goodType, event) {
-	goods[goodType].DOMLink.remove()
+	goods[goodType].removeAssociatedDOM() // delete good from store
 	dragGood = new DraggingGood(goodType)
 	dragGood.startDrag(event)
 

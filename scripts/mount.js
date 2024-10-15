@@ -30,15 +30,14 @@ function mountPayButton(buttonParams) {
 	return buttonObject
 }
 
-let staticObjects
+let staticObjects //  store-background and basket
 let payButton
 let goods
 let choosedGoodsAmount = 0
 
 document.addEventListener("DOMContentLoaded", () => {
-	staticObjects = mountStaticObjects(staticObjectsParams) // store-background and basket
+	staticObjects = mountStaticObjects(staticObjectsParams) // store-background and basket, params from config.js
 	goods = mountGoods()
-	console.log(goods)
-	payButton = mountPayButton(buttonParams)
+	payButton = mountPayButton(buttonParams) //params from config.js
 })
 

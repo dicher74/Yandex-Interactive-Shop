@@ -48,6 +48,11 @@ class MountObject extends MountObjectRect {
 			associatedDOM.setAttribute(attribute, this[attribute]);
 		}
 	}
+	removeAssociatedDOM() {
+		if (this.DOMLink) {
+			this.DOMLink.remove()
+		}
+	}
 	mount() {
 		const svgObject = MountObject.svgObject
 		switch (this.#objectType) {
@@ -91,13 +96,12 @@ class ButtonObject extends MountObject {
 }
 
 class GoodMountObject extends MountObject {
-	static typeParams = goodsParams
+	static typeParams = goodsParams // config.js
 
 	constructor(goodType='', parentNode=document.querySelector('.store__products'), passiveMode=true) {		
 		const associatedDOM = document.createElementNS("http://www.w3.org/2000/svg", "image") 
 		associatedDOM.setAttribute('href', `assets/store-food/${goodType}.svg`)
 		if (passiveMode === true) {
-			console.log('new passive good')
 			associatedDOM.setAttribute('tabindex', 0)
 			associatedDOM.classList.add('store__product', 'store__product_passive')
 			associatedDOM.addEventListener('mousedown', (event) => { initializeDragObject(goodType, event)})
