@@ -1,2 +1,2 @@
 # Yandex-Interactive-Shop
-Test task for yandex frontend facation
+Создание интерактивного баннера в формате svg с возможностью перетаскивания элементов с помощью touch и mouse событий.
